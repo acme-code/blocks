@@ -1,0 +1,16 @@
+.content {
+
+background-color: lightblue;
+padding: 10px;
+font-family: Arial;
+width: 50%;
+border: 1px;
+border-style: solid;
+}
+
+.content:hover {
+background-color: yellow ;
+border: 2px;
+
+
+}
