@@ -2,20 +2,7 @@
 
 
 
-class block {
 
-    var $content;
-    var $time;
-
-    function set_content($text) {
-      $this->content  = $text;
-    }
-
-    function get_content() {
-      return ('salt of space '.$this->content);
-    }
-
-}
 
 function printPosts() {
   $pdo = new PDO('mysql:host=localhost;dbname=blocks', 'root', '');
@@ -30,15 +17,19 @@ function printPosts() {
 
         echo("
 
-        <div class='content' id=".$key['id'].">
+        <span class='child' id=$key['id']>
 
 
-         <p> AUTOR :".$key['author']." and content is :".$key['text']." </p>
+         <p class='post'> $key['text'] </p>
+
+         <p> author: $key['author'] <br /></p>
+
+
 
 
         ".$form.$edit."
 
-        </div>");
+        </span>");
         $counter++;
 
     };
@@ -52,6 +43,7 @@ function insertPosts($text,$author) {
     $query_in = $query_insert.'("'.$text.'","'.$author.'",UNIX_TIMESTAMP());';
     $stmt = $pdo->query($query_in);
     echo($query_in);
+    print_r($pdo->errorInfo());
 
 }
 
@@ -85,8 +77,6 @@ function removePost($id) {
 function printEdit($id,$text) {
 
 
-  $aid = array($id,$text);
-  $myJSON = json_encode($aid);
   $time="'".$text."'";
   $taxt = '"'.$text.'"';
   echo($taxt);
@@ -95,10 +85,22 @@ function printEdit($id,$text) {
   $decode = preg_replace('/\s/', '&nbsp;', $text);
 
 
-  $editForm= "<button type='button'  onclick=cook_edit_form($id,'".$decode."')>CLICK</button>";
+  $editForm= "<button type='button'  onclick=cook_edit_form($id,'".$decode."')>EDIT</button>";
   return ($editForm);
 
 }
+
+function editPost($id,$text) {
+
+  $query_edit="UPDATE text SET text='$text' WHERE id=$id";
+  $pdo = new PDO('mysql:host=localhost;dbname=blocks', 'root', '');
+  $stmt = $pdo->query($query_edit);
+  print_r($pdo->errorInfo());
+
+
+}
+
+
 
 
 

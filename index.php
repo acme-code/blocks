@@ -2,14 +2,19 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <script src="script.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="assets/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
     <title> bloblocks </title>
   </head>
   <body>
 
     <?php
           include 'CastesLib.php';
+          function laduje($nazwa) {
+            require "/classes/$nazwa.php";
+          }
+
+          spl_autoload_register('laduje');
 
           if(isset($_POST['func'])) {
 
@@ -23,10 +28,17 @@
 
           }
 
+          if (isset($_POST['edited'])) {
+
+            editPost($_POST['edit'],$_POST['edited']);
+          }
+
+
+
         ?>
 
     <button type="button" name="button"> load base </button>
-    <div id='dash_board'>
+    <div class='newText'>
 
       <form action="index.php" method="post">
         <input type="text" name="input" value="write here pls">
@@ -41,15 +53,17 @@
 
     </div>
 
-    <div id='php'>
-     <p> tu
+    <div class='container'>
+
     <?php printPosts(); ?>
-    </p>
+    
     </div>
 
 
 
-
+<footer>
+  FUTANARI!
+</footer>
 
   </body>
 </html>

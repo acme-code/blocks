@@ -1,0 +1,33 @@
+.child {
+
+background-color: lightblue;
+padding: 10px;
+font-family: Arial;
+width: 50%;
+border: 1px;
+border-style: solid;
+height: auto;
+}
+
+.child:hover {
+background-color: yellow ;
+border: 2px;
+box-shadow: 0 8px 6px -6px black;
+}
+
+.newText {
+  background-color: pink;
+  opacity: 50%;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: green;
+  flex-direction: column-reverse;
+}
+
+/* .post {
+display: none;
+} */
